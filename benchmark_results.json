@@ -1,0 +1,26 @@
+[
+    {
+        "size": 10,
+        "insertion_sort_comparisons": 34,
+        "binary_search_comparisons": 4,
+        "linear_search_comparisons": 10,
+        "binary_search_index": 9,
+        "linear_search_index": 9
+    },
+    {
+        "size": 500,
+        "insertion_sort_comparisons": 63035,
+        "binary_search_comparisons": 9,
+        "linear_search_comparisons": 500,
+        "binary_search_index": 499,
+        "linear_search_index": 499
+    },
+    {
+        "size": 3000,
+        "insertion_sort_comparisons": 2219867,
+        "binary_search_comparisons": 12,
+        "linear_search_comparisons": 3000,
+        "binary_search_index": 2999,
+        "linear_search_index": 2999
+    }
+]
