@@ -47,3 +47,5 @@ TaskFlow/
 └── README.md
 Final project verification completed.
 Final submission check completed.
+## Final Verification
+Algorithm checks pass with python check_algorithms.py.

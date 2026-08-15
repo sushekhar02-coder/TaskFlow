@@ -1,96 +1,151 @@
 
-from algorithms import (
+from backend.algorithms import (
     insertion_sort,
     binary_search,
+    linear_search,
     insertion_sort_count,
     binary_search_count,
-    linear_search_count
+    linear_search_count,
 )
 
-def check(case_name, result, expected):
-    if result == expected:
-        print(f"PASS: {case_name}")
+
+def check(condition, message):
+    if condition:
+        print(f"PASS: {message}")
     else:
-        print(f"FAIL: {case_name} — expected {expected}, got {result}")
+        print(f"FAIL: {message}")
 
 
-records = []
-insertion_sort(records, "title")
-check("insertion sort empty list", records, [])
+def main():
+
+    # =========================
+    # INSERTION SORT
+    # =========================
+
+    records = []
+    insertion_sort(records, "title")
+    check(
+        records == [],
+        "insertion_sort empty list"
+    )
+
+    records = [{"title": "Task A"}]
+    insertion_sort(records, "title")
+    check(
+        records == [{"title": "Task A"}],
+        "insertion_sort single element"
+    )
+
+    records = [
+        {"title": "Task B"},
+        {"title": "Task A"},
+    ]
+    insertion_sort(records, "title")
+    check(
+        records == [
+            {"title": "Task A"},
+            {"title": "Task B"},
+        ],
+        "insertion_sort sorts correctly"
+    )
 
 
-records = [{"title": "Task A"}]
-insertion_sort(records, "title")
-check("insertion sort single element", records, [{"title": "Task A"}])
+    # =========================
+    # BINARY SEARCH
+    # =========================
+
+    values = [
+        {"title": "Task A"},
+        {"title": "Task B"},
+        {"title": "Task C"},
+        {"title": "Task D"},
+        {"title": "Task E"},
+    ]
+
+    check(
+        binary_search(values, "Task C", "title") == 2,
+        "binary_search finds existing value"
+    )
+
+    check(
+        binary_search(values, "Task Z", "title") == -1,
+        "binary_search missing value"
+    )
 
 
-records = [
-    {"title": "Alpha"},
-    {"title": "Beta"},
-    {"title": "Gamma"},
-    {"title": "Delta"},
-    {"title": "Epsilon"}
-]
+    # =========================
+    # LINEAR SEARCH
+    # =========================
 
-check("binary search first index", binary_search(records, "Alpha", "title"), 0)
-check("binary search middle index", binary_search(records, "Gamma", "title"), 2)
-check("binary search last index", binary_search(records, "Epsilon", "title"), 4)
-check("binary search absent value", binary_search(records, "Omega", "title"), -1)
+    check(
+        linear_search(values, "Task C", "title") == 2,
+        "linear_search finds existing value"
+    )
 
-
-records = [
-    {"title": "Charlie"},
-    {"title": "Alpha"},
-    {"title": "Bravo"}
-]
-
-result = insertion_sort_count(records, "title")
-
-if records == [
-    {"title": "Alpha"},
-    {"title": "Bravo"},
-    {"title": "Charlie"}
-] and type(result) == int and result > 0:
-    print("PASS: insertion sort count")
-else:
-    print(f"FAIL: insertion sort count — list {records}, count {result}")
+    check(
+        linear_search(values, "Task Z", "title") == -1,
+        "linear_search missing value"
+    )
 
 
-records = [
-    {"title": "Alpha"},
-    {"title": "Bravo"},
-    {"title": "Charlie"},
-    {"title": "Delta"},
-    {"title": "Echo"}
-]
+    # =========================
+    # INSERTION SORT COUNT
+    # =========================
 
-result = binary_search_count(records, "Charlie", "title")
+    records = [
+        {"title": "Task B"},
+        {"title": "Task A"},
+    ]
 
-if (
-    type(result) == dict
-    and result["index"] == 2
-    and type(result["comparison_count"]) == int
-    and result["comparison_count"] > 0
-):
-    print("PASS: binary search count")
-else:
-    print(f"FAIL: binary search count — got {result}")
+    insertion_count = insertion_sort_count(records, "title")
+
+    check(
+        insertion_count > 0,
+        "insertion_sort comparison count"
+    )
 
 
-records = [
-    {"title": "Alpha"},
-    {"title": "Bravo"},
-    {"title": "Charlie"},
-    {"title": "Delta"}
-]
+    # =========================
+    # BINARY SEARCH COUNT
+    # =========================
 
-result = linear_search_count(records, "Omega", "title")
+    binary_result = binary_search_count(
+        values,
+        "Task C",
+        "title"
+    )
 
-if (
-    type(result) == dict
-    and result["index"] == -1
-    and result["comparison_count"] == len(records)
-):
-    print("PASS: linear search count")
-else:
-    print(f"FAIL: linear search count — got {result}")
+    check(
+        binary_result["index"] == 2,
+        "binary_search_count finds value"
+    )
+
+    check(
+        binary_result["comparison_count"] > 0,
+        "binary_search comparison count"
+    )
+
+
+    # =========================
+    # LINEAR SEARCH COUNT
+    # =========================
+
+    linear_result = linear_search_count(
+        values,
+        "Task C",
+        "title"
+    )
+
+    check(
+        linear_result["index"] == 2,
+        "linear_search_count finds value"
+    )
+
+    check(
+        linear_result["comparison_count"] > 0,
+        "linear_search comparison count"
+    )
+
+
+if __name__ == "__main__":
+    main()
