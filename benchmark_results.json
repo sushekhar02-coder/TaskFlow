@@ -9,7 +9,7 @@
     },
     {
         "size": 500,
-        "insertion_sort_comparisons": 63263,
+        "insertion_sort_comparisons": 64766,
         "binary_search_comparisons": 9,
         "linear_search_comparisons": 500,
         "binary_search_index": 499,
@@ -17,7 +17,7 @@
     },
     {
         "size": 3000,
-        "insertion_sort_comparisons": 2253596,
+        "insertion_sort_comparisons": 2226755,
         "binary_search_comparisons": 12,
         "linear_search_comparisons": 3000,
         "binary_search_index": 2999,
